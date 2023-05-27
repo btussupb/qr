@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  qr-front:
+    container_name: qr-front
+    build:
+      dockerfile: Dockerfile
+    networks:
+      - npm-nw
+      
+networks:
+  npm-nw:
+    external: true
