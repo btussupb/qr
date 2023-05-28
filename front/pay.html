@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Сбор платежных данных</title>
+  <title>Ввод номера телефона</title>
   <style>
     body {
       display: flex;
@@ -14,24 +14,17 @@
     form {
       text-align: center;
     }
+
+    input, label {
+      font-size: 80px;
+    }
   </style>
 </head>
 <body>
-  <form method="post" action="обработчик_платежа.php">
-    <h1>Введите платежные данные</h1>
-    <label for="cardNumber">Номер карты:</label><br>
-    <input type="text" id="cardNumber" name="cardNumber" placeholder="Номер карты" required><br><br>
-
-    <label for="expiryDate">Срок действия:</label><br>
-    <input type="text" id="expiryDate" name="expiryDate" placeholder="ММ/ГГ" required><br><br>
-
-    <label for="cardHolderName">Имя владельца карты:</label><br>
-    <input type="text" id="cardHolderName" name="cardHolderName" placeholder="Имя владельца карты" required><br><br>
-
-    <label for="cvv">CVV-код:</label><br>
-    <input type="text" id="cvv" name="cvv" placeholder="CVV" required><br><br>
-
-    <input type="submit" value="Оплатить">
+  <form>
+    <label for="phoneNumber">Номер телефона:</label><br>
+    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="+7" pattern="\+7 \d{3} \d{7}" required><br>
+    <input type="submit" value="Отправить">
   </form>
 </body>
 </html>
