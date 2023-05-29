@@ -7,7 +7,8 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      height: 100%;
+      width: 100%;
       margin: 0;
     }
 
@@ -16,15 +17,102 @@
     }
 
     input, label {
-      font-size: 80px;
+      font-size: 80%;
     }
+    
+    :root {
+      --char-w: 1ch;
+      --gap: calc(0.5 * var(--char-w));
+      --n-char: 12;
+      --in-w: calc(var(--n-char) * (var(--char-w) + var(--gap)));
+    }
+
+    input {
+      display: block;
+      margin: 2em auto;
+      border: none;
+      padding: 0;
+      width: var(--in-w);
+      background: repeating-linear-gradient(90deg, dimgrey 0, dimgrey var(--char-w), transparent 0, transparent calc(var(--char-w) + var(--gap))) 0 100%/calc(var(--in-w) - var(--gap)) 2px no-repeat;
+      font: 5ch droid sans mono, consolas, monospace;
+      letter-spacing: var(--gap);
+    }
+
+    input:focus {
+      outline: none;
+      color: dodgerblue;
+    }
+
+    /* Медиа-запросы для адаптивности */
+
+    @media only screen and (max-width: 480px) {
+      /* При ширине экрана меньше или равной 480px */
+      :root {
+        --n-char: 8; /* Уменьшаем количество символов для маленьких экранов */
+      }
+    }
+
+    @media only screen and (max-width: 768px) {
+      /* При ширине экрана меньше или равной 768px */
+      input {
+        font-size: 3.5ch; /* Уменьшаем размер шрифта для маленьких экранов */
+      }
+    }
+    .tel-inp{
+      margin: 40% 0 0 0;
+    }
+
+    .btn-inp{
+      margin: 40% 0 0 0 ;
+  align-items: center;
+  appearance: none;
+  background-color: #d3cdcd;
+  background-size: calc(100% + 20px) calc(100% + 20px);
+  border-radius: 100px;
+  border-width: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: CircularStd,sans-serif;
+  font-size: 1rem;
+  height: auto;
+  justify-content: center;
+  line-height: 1.5;
+  padding: 6px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .2s,background-position .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.btn-inp:active,
+.btn-inp:focus {
+  outline: none;
+}
+
+.btn-inp:hover {
+  background-position: -20px -20px;
+}
+
+.btn-inp:focus:not(:active) {
+  box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+
+
   </style>
 </head>
 <body>
-  <form>
-    <label for="phoneNumber">Номер телефона:</label><br>
-    <input type="text" id="phoneNumber" name="phoneNumber" placeholder="+7" pattern="\+7 \d{3} \d{7}" required><br>
-    <input type="submit" value="Отправить">
+  <form>  
+    <input class="tel-inp" type="tel" maxlength="12" value="+7"/>
+    <button class="btn-inp" name="colvo" type="submit">Отправить</button>
+
   </form>
 </body>
 </html>

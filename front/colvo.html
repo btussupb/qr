@@ -1,56 +1,141 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>QR</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      padding: 20px;
-    }
+* {
+  margin: 0;
+  padding: 0;
+}
 
-    .container {
-      max-width: 400px;
-      padding: 400px;
-      background-color: #fff;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
+html,
+body {
+  background-color: #f4f4f4;
+  color: rgba(48, 47, 47,0.4);
+}
 
-    h1 {
-      color: #333333;
-      text-align: center;
-    }
+#wrapper {
+  padding-top: 10%;
+  position: relative;
+  border-top: 1px solid transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 20px;
-    }
+.wrap {
+  font-size: 400%;
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  
+}
 
-    .btn-group button {
-      margin-bottom: 40px;
-      padding: 50px 150px;
-      font-size: 50px;
-    }
-  </style>
+.inp{
+  padding-top: 10%;
+  width: 85%;
+}
+
+output:nth-child(2) {
+  color: black;
+}
+
+.btn-inp{
+  align-items: center;
+  appearance: none;
+  background-color: #d3cdcd;
+  background-size: calc(100% + 20px) calc(100% + 20px);
+  border-radius: 100px;
+  border-width: 0;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: black;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: CircularStd,sans-serif;
+  font-size: 1rem;
+  height: auto;
+  justify-content: center;
+  line-height: 1.5;
+  padding: 6px 20px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color .2s,background-position .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.btn-inp:active,
+.btn-inp:focus {
+  outline: none;
+}
+
+.btn-inp:hover {
+  background-position: -20px -20px;
+}
+
+.btn-inp:focus:not(:active) {
+  box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+}
+
+.form__field {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-family: inherit;
+  width: 85%;
+  border: 0;
+  border-bottom: 2px solid gray;
+  outline: 0;
+  font-size: 1.3rem;
+  color: black;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <form action="/colon1" method="post">
-    <div class="btn-group">
-      <button name="colvo" value="10 литров">10 литров</button>
-      <button name="colvo" value="20 литров">20 литров</button>
-      <button name="colvo" value="30 литров">30 литров</button>
-      <button name="colvo" value="полный бак">полный бак</button>
+  <form action="/colon1" method="post">
+  <div id="wrapper">
+    <div class="wrap">
+      <output></output>
+      <output>0</output>
+      <output>1</output>
     </div>
-    <form>
+    <div class="wrap">
+      <input class="inp" type="range" max="50" min="0" value="0" />
+    </div>
+    <button class="btn-inp" name="colvo" type="submit">Отправить</button>
+    <input type="number" class="form__field" placeholder="0" min="0"/>
+    <button class="btn-inp" name="colvo" type="submit">Отправить</button>
   </div>
+  </form>
+  <script>
+let output = document.querySelectorAll("output");
+let input = document.querySelector("input");
+
+input.addEventListener("input", function() {
+  if ((parseInt(input.value) - 1) < input.min) {
+    output[0].innerHTML = "";
+  } else {
+    output[0].innerHTML = parseInt(input.value) - 1;
+  }
+  output[1].innerHTML = parseInt(input.value);
+  if ((parseInt(input.value) + 1) > input.max) {
+    output[2].innerHTML = "";
+  } else {
+    output[2].innerHTML = parseInt(input.value) + 1;
+  }
+});
+  </script>
+
 </body>
 </html>
